@@ -15,7 +15,10 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 io.on("connection", (socket) => {
-    console.log(socket);
+    socket.on("room", (msg) => {
+        console.log(msg)
+    })
+
 })
 
 // const wss = new WebSocket.Server({ server });
