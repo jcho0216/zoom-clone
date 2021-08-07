@@ -15,8 +15,14 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 io.on("connection", (socket) => {
-    socket.on("room", (msg) => {
-        console.log(msg)
+    socket.onAny((event) => {
+        console.log(`Socket Event: ${event}`);
+    })
+
+    socket.on("enter-room", (roomName, done) => {       
+        console.log(roomName);
+        socket.join(roomName);
+        done();
     })
 
 })
