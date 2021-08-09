@@ -50,9 +50,8 @@ const welcome = document.getElementById("welcome");
 const form = welcome.querySelector("form");
 const room = document.getElementById("room");
 
-let roomName;
 
-function showRoom() {
+function showRoom(roomName) {
     welcome.hidden = true;
     room.hidden = false;
     const h3 = room.querySelector("h3");
@@ -62,7 +61,7 @@ function showRoom() {
 function handleRoomSubmit(event) {
     event.preventDefault();
     const input = form.querySelector("input");
-    socket.emit("enter-room", input.value, showRoom)
+    socket.emit("enter-room", input.value, showRoom(input.value))
     input.value = "";
 }
 
