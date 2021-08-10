@@ -20,35 +20,12 @@ io.on("connection", (socket) => {
     })
 
     socket.on("enter-room", (roomName, done) => {       
-        console.log(roomName);
         socket.join(roomName);
         done();
+        socket.to(roomName).emit("welcome");
     })
 
 })
 
-// const wss = new WebSocket.Server({ server });
-
-// const sockets = [];
-
-// wss.on("connection", (socket) => {
-//     sockets.push (socket); 
-//     socket["nickname"] = "익명"
-//     console.log("Connected to Browser");
-//     socket.on("close", () => {
-//         console.log("Disconnected from the Browser")
-//     })
-//     socket.on("message", (message) => {
-//         const parsed = JSON.parse(message);
-//         switch(parsed.type) {
-//             case "new_message":
-//                 sockets.forEach((aSocket) => aSocket.send(`${socket.nickname} : ${parsed.payload}`));
-//                 break;
-//             case "nickname":
-//                 socket["nickname"] = parsed.payload;        
-//                 break;
-//         }
-//     })
-// })
 
 server.listen(3000, handleListen);  
