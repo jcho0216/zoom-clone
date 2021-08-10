@@ -37,3 +37,7 @@ socket.on("welcome", () => {
     console.log("wassup");
     addMessage("Someone Joined");
 });
+
+socket.on("bye", () => {
+    addMessage("Someone Left");
+})
